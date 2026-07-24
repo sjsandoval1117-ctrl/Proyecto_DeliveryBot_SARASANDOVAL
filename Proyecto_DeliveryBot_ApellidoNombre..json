@@ -1,0 +1,390 @@
+{
+  "name": "My workflow 8",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -4416,
+        48
+      ],
+      "id": "9d9afabb-cce0-4d14-9e2e-83bc7500c1d3",
+      "name": "Telegram Trigger",
+      "webhookId": "9dff03c6-271a-44ee-a074-ab73ae9d8fb0",
+      "alwaysOutputData": true,
+      "executeOnce": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "Mw27Zs1k9G6UjLJn",
+          "name": "Telegram account 2"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chatId }}",
+        "text": "={{ $('Code in JavaScript1').item.json.mensaje }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -3504,
+        48
+      ],
+      "id": "eb17a85c-5a93-4bef-8392-d54ebd808d97",
+      "name": "Send a text message",
+      "webhookId": "b89f591a-c162-4a9d-a214-5c7d18ae8321",
+      "credentials": {
+        "telegramApi": {
+          "id": "Mw27Zs1k9G6UjLJn",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "15P6O_SdusHUKOE-jeV1VJ50r_nFn3nIM8VDpdGAa8-g",
+          "mode": "list",
+          "cachedResultName": "deliveryBot                                                                                                                                ",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15P6O_SdusHUKOE-jeV1VJ50r_nFn3nIM8VDpdGAa8-g/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1326311382,
+          "mode": "list",
+          "cachedResultName": "usuario",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15P6O_SdusHUKOE-jeV1VJ50r_nFn3nIM8VDpdGAa8-g/edit#gid=1326311382"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "telegram_id": "={{ $('Code in JavaScript').item.json.chatId }}",
+            "punto_lealtad": "={{ $('Code in JavaScript1').item.json.paso }}",
+            "nombre_completo": "={{ $node[\"Telegram Trigger\"].json.message.from.first_name }} {{ $node[\"Telegram Trigger\"].json.message.from.last_name }}",
+            "departamento ": "={{ $('Code in JavaScript').item.json.departamento }}",
+            "carrito": "={{ $('Code in JavaScript1').item.json.carrito }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "telegram_id",
+              "displayName": "telegram_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "nombre_completo",
+              "displayName": "nombre_completo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "departamento ",
+              "displayName": "departamento ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "punto_lealtad",
+              "displayName": "punto_lealtad",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "carrito",
+              "displayName": "carrito",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -3104,
+        48
+      ],
+      "id": "966fc855-ef2c-4348-9ca2-e7b8bc5efd69",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "yo5QIvGxvwNWBp4g",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "15P6O_SdusHUKOE-jeV1VJ50r_nFn3nIM8VDpdGAa8-g",
+          "mode": "list",
+          "cachedResultName": "deliveryBot                                                                                                                                ",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15P6O_SdusHUKOE-jeV1VJ50r_nFn3nIM8VDpdGAa8-g/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1043563552,
+          "mode": "list",
+          "cachedResultName": "pedidos",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15P6O_SdusHUKOE-jeV1VJ50r_nFn3nIM8VDpdGAa8-g/edit#gid=1043563552"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id_pedidos": "={{ $('Code in JavaScript').item.json.id_pedido }}",
+            "id_usuario": "={{ $('Telegram Trigger').item.json.message.from.id }}",
+            "detalle_pedido": "={{ $('Code in JavaScript').item.json.detalle }}",
+            "total_pagar": "={{ $('Code in JavaScript').item.json.total }}",
+            "estado": "={{ $('Code in JavaScript').item.json.estado }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "id_pedidos",
+              "displayName": "id_pedidos",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "id_usuario",
+              "displayName": "id_usuario",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "detalle_pedido",
+              "displayName": "detalle_pedido",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "total_pagar",
+              "displayName": "total_pagar",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "estado",
+              "displayName": "estado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -3296,
+        48
+      ],
+      "id": "2fdf12a5-a17b-4197-be47-9e098ce9aa4d",
+      "name": "Append row in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "yo5QIvGxvwNWBp4g",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const chatId = $json.chatId;\nconst pasoActual = $json.paso;\nconst carrito = $json.carrito || [];\nconst nombre = $json.nombre;\nconst texto = ($node[\"Telegram Trigger\"].json.message.text || \"\").trim();\nlet mensajeFinal = \"\";\nlet idPedido = Date.now();\nlet total = 0;\n\nconst datosGlobales = $getWorkflowStaticData(\"global\");\nconst clave = \"usr_\" + chatId;\n\nif (pasoActual === 4) {\n  const departamento = texto;\n  total = carrito.reduce((s, p) => s + (Number(p.precio) || 0), 0);\n\n  mensajeFinal = \"====================================\\n\";\n  mensajeFinal += \"           FACTURA DE PEDIDO         \\n\";\n  mensajeFinal += \"====================================\\n\";\n  mensajeFinal += \"ID Pedido: \" + idPedido + \"\\n\";\n  mensajeFinal += \"Fecha: \" + new Date().toLocaleString(\"es-CO\") + \"\\n\\n\";\n  mensajeFinal += \"DATOS DEL CLIENTE:\\n\";\n  mensajeFinal += \"Nombre: \" + nombre + \"\\n\";\n  mensajeFinal += \"Departamento: \" + departamento + \"\\n\\n\";\n  mensajeFinal += \"PRODUCTOS:\\n\";\n  \n  carrito.forEach(p => {\n    mensajeFinal += \"- \" + String(p.nombre || \"Producto\") + \" -> $\" + (Number(p.precio) || 0) + \" COP\\n\";\n  });\n  \n  mensajeFinal += \"\\n====================================\\n\";\n  mensajeFinal += \"TOTAL A PAGAR: $\" + total + \" COP\\n\";\n  mensajeFinal += \"Estado: PENDIENTE\\n\";\n  mensajeFinal += \"====================================\";\n}\n\nreturn [{\n  json: {\n    chatId: chatId,\n    mensaje: mensajeFinal,\n    id_pedido: idPedido,\n    nombre: nombre,\n    departamento: texto,\n    total: total,\n    estado: \"PENDIENTE\"\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -3808,
+        48
+      ],
+      "id": "9a5aa6ed-6b1b-4e88-b5de-37e599d5cdcd",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "jsCode": "const chatId = $node[\"Telegram Trigger\"].json.message.chat.id;\nconst texto = ($node[\"Telegram Trigger\"].json.message.text || \"\").trim().toLowerCase();\nconst num = Number(texto);\nlet mensaje = \"\";\n\nconst datosGlobales = $getWorkflowStaticData(\"global\");\nconst clave = \"usr_\" + chatId;\nif (!datosGlobales[clave]) datosGlobales[clave] = { paso: 1, carrito: [] };\nconst sesion = datosGlobales[clave];\n\nconst menu = $input.all().map(f => f.json);\n\nif (texto === \"/start\") {\n  datosGlobales[clave] = { paso: 1, carrito: [] };\n  mensaje = \"Bienvenido a la cafetería.\\n\\nCATEGORIAS:\\n1. Bebidas\\n2. Snacks\\n3. Almuerzos\\nEscribe el numero de la categoria:\";\n}\n\nelse if (sesion.paso === 1 && num >= 1 && num <= 3) {\n  const cats = [\"bebida\", \"snack\", \"almuerzo\"];\n  const cat = cats[num - 1];\n  mensaje = cat.toUpperCase() + \"S:\\n\";\n  menu.forEach(item => {\n    if (String(item.categoria || \"\").trim().toLowerCase() === cat) {\n      mensaje += \"- \" + (item.nombre || \"Producto\") + \" -> $\" + (item.precio || 0) + \" COP\\n\";\n    }\n  });\n  if (mensaje === cat.toUpperCase() + \"S:\\n\") {\n    menu.forEach(item => mensaje += \"- \" + (item.nombre || \"Producto\") + \" -> $\" + (item.precio || 0) + \" COP\\n\");\n  }\n  mensaje += \"\\nEscribe el nombre del producto:\";\n  datosGlobales[clave].paso = 2;\n}\n\nelse if (sesion.paso === 2) {\n  const prod = menu.find(i => String(i.nombre || \"\").toLowerCase().includes(texto));\n  if (prod) {\n    datosGlobales[clave].carrito.push(prod);\n    const total = datosGlobales[clave].carrito.reduce((s, p) => s + (Number(p.precio) || 0), 0);\n    mensaje = \"Producto agregado:\\n- \" + prod.nombre + \" -> $\" + prod.precio + \" COP\\nTotal: $\" + total + \" COP\\nEscribe otro numero o continuar:\";\n    datosGlobales[clave].paso = 1;\n  } else {\n    mensaje = \"Producto no encontrado.\";\n  }\n}\n\nelse if (texto === \"continuar\" && datosGlobales[clave].carrito.length > 0) {\n  mensaje = \"Escribe tu nombre completo:\";\n  datosGlobales[clave].paso = 3;\n}\n\nelse if (sesion.paso === 3) {\n  datosGlobales[clave].nombre = texto;\n  mensaje = \"Nombre guardado. Escribe tu departamento:\";\n  datosGlobales[clave].paso = 4;\n}\n\nreturn [{\n  json: {\n    chatId: chatId,\n    mensaje: mensaje,\n    paso: datosGlobales[clave].paso,\n    carrito: datosGlobales[clave].carrito,\n    nombre: datosGlobales[clave].nombre || \"\"\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -4048,
+        48
+      ],
+      "id": "e8034776-2fb2-47b8-9fbf-3792d66c940c",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "15P6O_SdusHUKOE-jeV1VJ50r_nFn3nIM8VDpdGAa8-g",
+          "mode": "list",
+          "cachedResultName": "deliveryBot                                                                                                                                ",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15P6O_SdusHUKOE-jeV1VJ50r_nFn3nIM8VDpdGAa8-g/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "menu",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15P6O_SdusHUKOE-jeV1VJ50r_nFn3nIM8VDpdGAa8-g/edit#gid=0"
+        },
+        "options": {
+          "outputFormatting": {
+            "values": {
+              "general": "UNFORMATTED_VALUE",
+              "date": "FORMATTED_STRING"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -4208,
+        48
+      ],
+      "id": "3b8be249-db59-48b6-a20a-50c3e5ccfa1e",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "yo5QIvGxvwNWBp4g",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a text message": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet1": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "5b817136-0684-475b-b0f5-f0dd2e8d35ed",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "c911983f4896484c0832432b0173cb0669172809541d0b4634aab2b5fa51134c"
+  },
+  "nodeGroups": [],
+  "id": "jUi0B4j7YRMpmYc1",
+  "tags": []
+}
